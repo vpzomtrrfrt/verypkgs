@@ -1,0 +1,17 @@
+name: lvm2
+version: 2.02.98
+sources:
+  - href: "ftp://sources.redhat.com/pub/lvm2/LVM2.2.02.98.tgz"
+    verification:
+      type: sha256
+      sum: 71030a58fef7e00d82ca4144334548e46aad24551a3cfbe7c3059b1bd137d864
+depends:
+  build:
+    - tar
+    - gzip
+scripts:
+  install: 
+    - tar xf "$srcdir/LVM2.$version.tgz"
+    - cd "LVM2.$version"
+    - ./configure --prefix=/usr
+    - make "DESTDIR=$pkgdir" install
