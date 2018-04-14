@@ -1,0 +1,21 @@
+name: dash
+version: 0.5.9.1
+sources:
+  - href: "http://gondor.apana.org.au/~herbert/dash/files/dash-0.5.9.1.tar.gz"
+    verification:
+      type: sha256
+      sum: 5ecd5bea72a93ed10eb15a1be9951dd51b52e5da1d4a7ae020efd9826b49e659
+depends:
+  build:
+    - tar
+    - gzip
+scripts:
+  install:
+    - tar xf "$srcdir/dash-$version.tar.gz"
+    - cd "dash-$version"
+    - ./configure --prefix=/usr
+    - make DESTDIR="$pkgdir" install
+alternatives:
+  sh:
+    sh: /usr/bin/dash
+    sh.1: /usr/share/man/man1/dash.1
