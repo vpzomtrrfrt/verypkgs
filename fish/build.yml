@@ -2,7 +2,7 @@ name: fish
 version: 2.7.1
 depends:
   all:
-    - curses
+    - ncurses
     - gettext
     - glibc
   build:
