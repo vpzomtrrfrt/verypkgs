@@ -1,0 +1,18 @@
+name: runit
+version: 2.1.2
+depends:
+  build:
+    - tar
+    - gzip
+sources:
+  - href: "http://smarden.org/runit/runit-2.1.2.tar.gz"
+    verification:
+      type: sha256
+      sum: 6fd0160cb0cf1207de4e66754b6d39750cff14bb0aa66ab49490992c0c47ba18
+scripts:
+  install:
+    - tar xf "$srcdir/runit-$version.tar.gz"
+    - cd "admin/runit-$version/src"
+    - make
+    - mkdir -p "$pkgdir/usr/bin"
+    - install chpst runit runit-init runsv runsvchdir runsvdir sv svlogd utmpset "$pkgdir/usr/bin"
