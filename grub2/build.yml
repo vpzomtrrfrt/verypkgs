@@ -1,0 +1,18 @@
+name: grub2
+version: 2.02
+sources:
+  - href: "ftp://ftp.gnu.org/gnu/grub/grub-2.02.tar.xz"
+    verification:
+      type: sha256
+      sum: 810b3798d316394f94096ec2797909dbf23c858e48f7b3830826b8daa06b7b0f
+depends:
+  build:
+    - tar
+    - xz
+    - flex
+scripts:
+  install:
+    - tar xf "$srcdir/grub-$version.tar.xz"
+    - cd "grub-$version"
+    - ./configure --disable-werror
+    - make "DESTDIR=$pkgdir" install
