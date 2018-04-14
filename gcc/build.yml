@@ -1,0 +1,20 @@
+name: gcc
+version: 7.3.0
+epoch: 2
+sources:
+  - href: "https://ftpmirror.gnu.org/gcc/gcc-7.3.0/gcc-7.3.0.tar.xz"
+    verification:
+      type: sha256
+      sum: 832ca6ae04636adbb430e865a1451adf6979ab44ca1c8374f61fba65645ce15c
+depends:
+  build:
+    - tar
+    - xz
+    - make
+scripts:
+  install:
+    - tar xf "$srcdir/gcc-$version.tar.xz"
+    - cd "gcc-$version"
+    - ./configure --prefix=/usr
+    - make
+    - make DESTDIR="$pkgdir" install
