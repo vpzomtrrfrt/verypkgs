@@ -1,0 +1,24 @@
+name: glibc
+version: 2.27
+depends:
+  build:
+    - tar
+    - xz
+    - make
+    - bison
+    - gettext
+    - texinfo
+sources:
+  - href: "http://ftp.gnu.org/gnu/glibc/glibc-2.27.tar.xz"
+    verification:
+      type: sha256
+      sum: 5172de54318ec0b7f2735e5a91d908afe1c9ca291fec16b5374d9faadfc1fc72
+scripts:
+  install:
+    - tar xf "$srcdir/glibc-$version.tar.xz"
+    - cd "glibc-$version"
+    - mkdir -p build
+    - cd build
+    - ../configure --prefix=/usr
+    - make all
+    - make DESTDIR="$pkgdir" install
