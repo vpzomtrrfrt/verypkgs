@@ -1,0 +1,22 @@
+name: linux
+version: 4.16.2
+depends:
+  build:
+    - tar
+    - xz
+sources:
+  - href: "https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.16.2.tar.xz"
+    verification:
+      type: sha256
+      sum: 470b1fe3b8ee5d1e8e0be5c4e5928b6d5bc00e9ab6c4cff18ff680d3ef20f894
+scripts:
+  install:
+    - tar xf "$srcdir/linux-$version.tar.xz"
+    - cd "linux-$version"
+    - make defconfig
+    - make allmodconfig
+    - make
+    - make modules
+    - make "INSTALL_MOD_PATH=$pkgdir" modules_install
+    - mkdir -p "$pkgdir/boot"
+    - install arch/x86/boot/bzImage "$pkgdir/boot/vmlinuz-$version"
