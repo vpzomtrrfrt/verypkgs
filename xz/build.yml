@@ -1,0 +1,20 @@
+name: xz
+version: 5.2.3
+epoch: 2
+depends:
+  all:
+    - gettext
+  build:
+    - tar
+    - xz
+sources:
+  - href: "https://tukaani.org/xz/xz-5.2.3.tar.xz"
+    verification:
+      type: sha256
+      sum: 7876096b053ad598c31f6df35f7de5cd9ff2ba3162e5a5554e4fc198447e0347
+scripts:
+  install:
+    - tar xf "$srcdir/xz-$version.tar.xz"
+    - cd "xz-$version"
+    - ./configure --prefix=/usr
+    - make DESTDIR="$pkgdir" install
