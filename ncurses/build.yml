@@ -1,0 +1,17 @@
+name: ncurses
+version: 6.1
+depends:
+  build:
+    - tar
+    - gzip
+sources:
+  - href: "ftp://ftp.invisible-island.net/ncurses/ncurses-6.1.tar.gz"
+    verification:
+      type: sha256
+      sum: aa057eeeb4a14d470101eff4597d5833dcef5965331be3528c08d99cebaa0d17
+scripts:
+  install:
+    - tar xf "$srcdir/ncurses-$version.tar.gz"
+    - cd "ncurses-$version"
+    - ./configure
+    - make DESTDIR="$pkgdir" install
