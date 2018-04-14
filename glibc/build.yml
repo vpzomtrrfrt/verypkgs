@@ -1,12 +1,13 @@
 name: glibc
 version: 2.27
 depends:
+  all:
+    - gettext
   build:
     - tar
     - xz
     - make
     - bison
-    - gettext
     - texinfo
 sources:
   - href: "http://ftp.gnu.org/gnu/glibc/glibc-2.27.tar.xz"
