@@ -1,0 +1,21 @@
+name: coreutils-uutils
+version: 2489
+depends:
+  build:
+    - cargo
+    - cmake
+    - gzip
+    - tar
+sources:
+  - href: "https://github.com/uutils/coreutils/archive/e53851b753ea807d67d3517a23dc20d034274227.tar.gz"
+    verification:
+      type: sha256
+      sum: 1448acdddf4d40615527a9741384215bbb2c91c2e0f66c9546ea198c830dc704
+scripts:
+  install:
+    - tar xf "$srcdir/e53851b753ea807d67d3517a23dc20d034274227.tar.gz"
+    - cd "coreutils-e53851b753ea807d67d3517a23dc20d034274227"
+    - cargo build --release
+    - mkdir -p "$pkgdir/usr/bin"
+    - cp ./target/release/uutils "$pkgdir/usr/bin/"
+    - for i in `./target/release/uutils | grep -P "\t"`; do ln -s ./uutils "$pkgdir/usr/bin/$i"; done
