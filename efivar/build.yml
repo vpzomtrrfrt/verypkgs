@@ -1,0 +1,17 @@
+name: efivar
+version: 35
+sources:
+  - href: "https://github.com/rhboot/efivar/releases/download/35/efivar-35.tar.bz2"
+    verification:
+      type: sha256
+      sum: 1e033dc5d099a44fd473b0887dbcc4b105613efab0fb3c5df9f111ea5d147394
+depends:
+  build:
+    - tar
+    - bzip2
+scripts:
+  install:
+    - tar xf "$srcdir/efivar-$version.tar.bz2"
+    - cd "efivar-$version"
+    - make
+    - make "DESTDIR=$pkgdir" install

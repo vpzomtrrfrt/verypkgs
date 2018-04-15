@@ -1,0 +1,20 @@
+name: efibootmgr
+version: 16
+sources:
+  - href: "https://github.com/rhboot/efibootmgr/releases/download/16/efibootmgr-16.tar.bz2"
+    verification:
+      type: sha256
+      sum: 950795fb4b58a09fb69e93c120d624000253f1241134469495c7a9def731f65f
+depends:
+  all:
+    - efivar
+  build:
+    - tar
+    - bzip2
+scripts:
+  install:
+    - tar xf "$srcdir/efibootmgr-$version.tar.bz2"
+    - cd "efibootmgr-$version"
+    - export EFIDIR=very
+    - make
+    - make "DESTDIR=$pkgdir" install
