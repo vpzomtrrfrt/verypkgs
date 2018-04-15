@@ -1,0 +1,17 @@
+name: pcre2
+version: 10.31
+sources:
+  - href: ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre2-10.31.tar.bz2
+    verification:
+      type: sha256
+      sum: e07d538704aa65e477b6a392b32ff9fc5edf75ab9a40ddfc876186c4ff4d68ac
+depends:
+  build:
+    - tar
+    - bzip2
+scripts:
+  install:
+    - tar xf "$srcdir/pcre2-$version.tar.bz2"
+    - cd "pcre2-$version"
+    - ./configure --prefix=/usr --enable-pcre2-16 --enable-pcre2-32 --enable-unicode
+    - make "DESTDIR=$pkgdir" install
