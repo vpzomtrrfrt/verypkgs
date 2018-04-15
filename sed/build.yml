@@ -1,0 +1,21 @@
+name: sed
+version: 4.5
+sources:
+  - href: "https://ftpmirror.gnu.org/sed/sed-4.5.tar.xz"
+    verification:
+      type: sha256
+      sum: 7aad73c8839c2bdadca9476f884d2953cdace9567ecd0d90f9959f229d146b40
+depends:
+  all:
+    - acl
+    - attr
+  build:
+    - tar
+    - xz
+    - make
+scripts:
+  install:
+    - tar xf "$srcdir/sed-$version.tar.xz"
+    - cd "sed-$version"
+    - ./configure --prefix=/usr
+    - make "DESTDIR=$pkgdir" install
