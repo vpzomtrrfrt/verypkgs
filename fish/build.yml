@@ -5,6 +5,7 @@ depends:
     - ncurses
     - gettext
     - glibc
+    - pcre2
   build:
     - cc
     - make
