@@ -1,0 +1,17 @@
+name: bash
+version: 4.4.18
+sources:
+  - href: "http://ftpmirror.gnu.org/bash/bash-4.4.18.tar.gz"
+    verification:
+      type: sha256
+      sum: 604d9eec5e4ed5fd2180ee44dd756ddca92e0b6aa4217bbab2b6227380317f23
+depends:
+  build:
+    - tar
+    - gzip
+scripts:
+  install:
+    - tar xf "$srcdir/bash-$version.tar.gz"
+    - cd "bash-$version"
+    - ./configure --prefix=/usr
+    - make "DESTDIR=$pkgdir" install
