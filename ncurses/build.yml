@@ -1,5 +1,6 @@
 name: ncurses
 version: 6.1
+epoch: 4
 depends:
   build:
     - tar
@@ -13,5 +14,5 @@ scripts:
   install:
     - tar xf "$srcdir/ncurses-$version.tar.gz"
     - cd "ncurses-$version"
-    - ./configure
+    - ./configure --prefix=/usr --enable-widec --with-shared
     - make DESTDIR="$pkgdir" install
